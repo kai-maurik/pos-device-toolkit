@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Start Nieuwe Kassa Sessie
+Exec=chromium --kiosk https://odoo.denieuwegraanschuur.nl/pos/ui
+Icon=/usr/share/icons/kassa.png
