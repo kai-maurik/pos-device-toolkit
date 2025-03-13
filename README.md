@@ -12,6 +12,7 @@ A gnome extension and installation utils to transform a plain Ubuntu system to a
   <li>GNOME Desktop Evirounment compatable with Gnome v42 extensions (example: Ubuntu 22.04)</li>
   <li>Odoo system where the popup customer display is named "CustomerFacingDisplay"</li>
   <li>Second monitor, marked as an extended display by gnome</li>
+</ul>
 <h2>Installation</h2>
 <p>
   <ul>
