@@ -7,6 +7,11 @@ A gnome extension and installation utils to transform a plain Ubuntu system to a
   <li>Gnome Extension which moves any window title containing "CustomerFacingDisplay" fullscreen to a second monitor</li>
   <li>An installation script which creates a desktop shortcut and autostart a browser in kiosk mode</li>
 </ul>
+<h2>Prerequisites</h2>
+<ul>
+  <li>GNOME Desktop Evirounment compatable with Gnome v42 extensions (example: Ubuntu 22.04)</li>
+  <li>Odoo system where the popup customer display is named "CustomerFacingDisplay"</li>
+  <li>Second monitor, marked as an extended display by gnome</li>
 <h2>Installation</h2>
 <p>
   <ul>
