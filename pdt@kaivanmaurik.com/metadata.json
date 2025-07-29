@@ -3,5 +3,7 @@
     "name": "PDT Gnome Extension",
     "description": "Handles automatic window movement of the CustomerFacingDisplay titled window.",
     "shell-version": [ "42" ],
-    "url": "https://github.com/Randegast"
+    "url": "https://github.com/Randegast",
+    "version": 2,
+    "version-title": "2"
 }
