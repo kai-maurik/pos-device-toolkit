@@ -5,7 +5,6 @@ HOME_DIR="/home/$USER"
 
 echo "Starting install for POS Device Toolkit v$VERSION by kaivanmaurik.com"
 #wget through github?
-sudo snap install chromium
 cp ./resources/db.sh "$HOME_DIR/db.sh"
 sudo cp ./resources/icon.png "/usr/share/icons/kassa.png"
 cp ./resources/pos.desktop "$HOME_DIR/.config/autostart/pos.desktop"

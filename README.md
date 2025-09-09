@@ -17,11 +17,12 @@ A gnome extension and installation utils to transform a plain Ubuntu system to a
 <p>
   <ul>
     <li>Clone the project into a user folder.</li>
-    <li>Before running the install script, modify the <code>resources/pos.desktop</code> file to match your needs. You need to change the URL it's pointing to, and the name if desirable.</li>
+    <li><b>IMPORTANT: </b>Before running the install script, modify the <code>resources/pos.desktop</code> file to match your needs. You need to change the URL it's pointing to, and the name if desirable.</li>
     <li>Add executing permissions to the install script: <code>chmod +x ./install.sh</code></li>
     <li>Execute the install script: <code>./install.sh</code></li>
     <li>Log out of the system, and log back in again. A browser in kiosk mode will now open by default. You can navigate out of this by using ALT+tab, SUPER etc.</li>
     <li>Open a terminal and run the following command: <code>gnome-extensions enable pdt@kaivanmaurik.com</code></li>
     <li>Give the device a restart if nececairy.</li>
   </ul>
+  If you are using a specific firefox profile to launch the POS, use the firefox-shell.desktop to launch firefox in normal mode.
 </p>

@@ -1,0 +1,28 @@
+PDT Program Licence (Non-Commercial Use)
+
+Copyright © 2025 De Nieuwe Graanschuur, Amersfoort, The Netherlands.
+All rights reserved.
+
+1. Ownership
+
+The PDT program and all related source code are the property of De Nieuwe Graanschuur (“DNG”).
+
+2. Permission for Non-Commercial Use
+
+DNG hereby grants permission to any individual or organization to use, copy, modify, and distribute this software and its source code for non-commercial purposes only, subject to the following conditions:
+
+Proper attribution must be given to De Nieuwe Graanschuur as the original author and owner.
+
+This permission does not include the right to use the software as part of a commercial product or service, or in exchange for financial compensation.
+
+3. Commercial Use
+
+Any commercial use of this software, including but not limited to resale, integration into commercial products, or use within a for-profit business, requires a separate commercial licence agreement with DNG.
+
+4. Warranty Disclaimer
+
+This software is provided “as is,” without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event shall DNG or the contributors be liable for any claim, damages, or other liability arising from the use of the software.
+
+5. Governing Law
+
+This licence is governed by the laws of the Netherlands.

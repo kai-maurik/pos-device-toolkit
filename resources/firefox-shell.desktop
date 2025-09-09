@@ -1,13 +1,10 @@
 [Desktop Entry]
 Version=1.0
-Name=Start nieuwe kassa sessie
+Name=Firefox (DNG)
 GenericName=Web Browser
-Comment=Odoo browser
-# SETTING: change the ODOO_LINK to your ODOO system. Add a '-P <profile-name>' 
-# to use a specific firefox profile. If you do, use firefox-shell.desktop as a
-# replacement to open the normal firefox in the default profile.
-Exec=firefox -no-remote --kiosk --name FirefoxPOS "ODOO_LINK"
-Icon=/usr/share/icons/kassa.png
+Comment=Firefox webbrowser
+Exec=firefox -no-remote -P DNG --name FirefoxDNG %u
+Icon=firefox
 Terminal=false
 Type=Application
 MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;
@@ -15,9 +12,17 @@ StartupNotify=true
 # NOTE: If this is not set to the same as the argument of the --name option,
 # then GNOME Shell won't show the nice Firefox icon and the user facing
 # "Firefox (Personal)" text along with it.
-StartupWMClass=FirefoxPOS
+StartupWMClass=FirefoxDNG
 Categories=Network;WebBrowser;
 Keywords=web;browser;internet;
 Actions=new-window;new-private-window;profile-manager-window;
 
 X-Desktop-File-Install-Version=0.26
+
+[Desktop Action new-window]
+Name=Open a New Window
+Exec=firefox -P personal --name FirefoxPersonal --new-window %u
+
+[Desktop Action new-private-window]
+Name=Open a New Private Window
+Exec=firefox -P personal --name FirefoxPersonal --private-window %u
