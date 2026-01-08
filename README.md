@@ -46,9 +46,10 @@ This toolkit is used in real-world organic retail environments and prioritizes:
 
 ### PyWebDriver system service
 
+It also includes an install script for correctly setting up [PyWebdriver](https://github.com/initOS/pywebdriver/tree/fix-printer-reconnect). See the official documentation for use and credits.
+
 * Installs **pywebdriver** as a systemd service
 * Sets up:
-
   * Python virtual environment
   * dedicated system user/group
   * udev rules for USB device access
@@ -57,9 +58,7 @@ This toolkit is used in real-world organic retail environments and prioritizes:
 
 ### GNOME Shell extension (optional)
 
-* Installs a user-level GNOME extension
-* Enables it when possible (best-effort)
-* Falls back gracefully if no active GNOME session is available
+The GNOME extension, compatable with an Odoo system, moves a CustomerFacingDisplay to the second monitor and full screens it if detected. It searches for the `CustomerFacingDisplay` window name on window open events.
 
 ---
 
@@ -69,7 +68,7 @@ Designed and tested for:
 
 * Ubuntu 22.04
 * GNOME (Wayland)
-* Firefox (Snap or Deb)
+* Firefox (Deb)
 * Single-user POS terminals
 
 Other Ubuntu-based systems may work but are not officially supported.
@@ -104,9 +103,9 @@ pos-device-toolkit/
 
 ### Install
 
+Open an empty folder, and run the following commands:
 ```bash
-git clone https://github.com/kai-maurik/pos-device-toolkit.git
-cd pos-device-toolkit
+wget https://raw.githubusercontent.com/kai-maurik/pos-device-toolkit/master/install.sh
 chmod +x install.sh
 ./install.sh
 ```
@@ -117,6 +116,8 @@ During installation:
 * Firefox POS kiosk setup is installed
 * pywebdriver is installed and started
 * Autostart and GNOME extension are configured
+
+Note: both installer scripts in the `/scripts` folder can also be run seperately, to install parts of the program. For these scripts to run succesfully, make sure the `/assets` folder is included next to the `/scripts` folder where the scripts reside. Easiest way is to just clone the project and run the scripts individually.
 
 ---
 
