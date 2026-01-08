@@ -49,7 +49,7 @@ log "Firefox binary path: ${FIREFOX_BIN}"
 # 3) Ensure pos profile exists
 log "Ensuring POS Firefox profile exists..."
 
-sudo -u "$REAL_USER" bash -lc "${FIREFOX_CMD} --CreateProfile \"${POS_PROFILE}\"" >/dev/null 2>&1 || true
+sudo -u "$REAL_USER" env HOME="$REAL_HOME" bash -lc "${FIREFOX_CMD} --headless --CreateProfile \"${POS_PROFILE}\"" || die "Failed to create Firefox profile: ${POS_PROFILE}"
 # --CreateProfile is idempotent; Firefox will ignore if it already exists
 
 # 4) Install POS URL config
