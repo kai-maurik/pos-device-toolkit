@@ -42,10 +42,6 @@ command -v firefox >/dev/null 2>&1 || die "firefox not found in PATH."
 # 2) Detect Snap vs Deb and choose command
 FIREFOX_BIN="$(command -v firefox)"
 FIREFOX_CMD="firefox"
-if command -v snap >/dev/null 2>&1 && snap list 2>/dev/null | awk '{print $1}' | grep -qx "firefox"; then
-  # On Ubuntu 22.04, firefox is often a snap. Using snap run can be more reliable in launchers.
-  FIREFOX_CMD="snap run firefox"
-fi
 
 log "Using Firefox command: ${FIREFOX_CMD}"
 log "Firefox binary path: ${FIREFOX_BIN}"
