@@ -55,9 +55,16 @@ chown -R pywebdriver:pywebdriver "$PYW_DIR"
 "$PYW_DIR/venv/bin/pip" install -r "$PYW_DIR/requirements.txt"
 "$PYW_DIR/venv/bin/pip" install .
 
-echo "[6/9] Copy config.ini.tmpl to $CFG_LOC/config.ini"
-mkdir -p $CFG_LOC
-cp "$PYW_DIR/config/config.ini.tmpl" "$CFG_LOC/config.ini"
+echo "[6/9] Ensure config exists at $CFG_LOC/config.ini"
+mkdir -p "$CFG_LOC"
+
+if [[ ! -f "$CFG_LOC/config.ini" ]]; then
+  cp "$PYW_DIR/config/config.ini.tmpl" "$CFG_LOC/config.ini"
+  echo "Created $CFG_LOC/config.ini from template."
+else
+  echo "Config already exists at $CFG_LOC/config.ini; leaving untouched."
+fi
+
 chown -R pywebdriver:pywebdriver "$CFG_LOC"
 
 echo "[7/9] Wrapper script (activates venv for systemd)"
@@ -66,7 +73,7 @@ cat >"$RUN_SH" <<'EOF'
 set -euo pipefail
 source /opt/posbox/pywebdriver/venv/bin/activate
 exec python /opt/posbox/pywebdriver/venv/bin/pywebdriverd \
-  --config /opt/posbox/pywebdriver/config/config.ini
+  --config /etc/pywebdriver/config.ini
 EOF
 chmod +x "$RUN_SH"
 chown pywebdriver:pywebdriver "$RUN_SH"

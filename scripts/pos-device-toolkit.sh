@@ -150,6 +150,38 @@ EOF
 
 sudo -u "$REAL_USER" chmod 644 "${AUTOSTART_DESKTOP}"
 
+# 9) Installing gnome extension
+log "Installing GNOME extension (user-level)..."
+
+EXT_UUID="pdt@kaivanmaurik.com"
+EXT_SRC="${PROJECT_ROOT}/assets/gnome-extension/${EXT_UUID}"
+EXT_BASE="${REAL_HOME}/.local/share/gnome-shell/extensions"
+EXT_DST="${EXT_BASE}/${EXT_UUID}"
+
+# Sanity check
+[[ -d "$EXT_SRC" ]] || die "GNOME extension source not found: $EXT_SRC"
+
+# Ensure extensions base directory exists
+sudo -u "$REAL_USER" mkdir -p "$EXT_BASE"
+
+# Install extension if not present
+if [[ ! -d "$EXT_DST" ]]; then
+  sudo -u "$REAL_USER" cp -r "$EXT_SRC" "$EXT_DST"
+  log "GNOME extension copied to user directory."
+else
+  log "GNOME extension already installed; skipping copy."
+fi
+
+# Best-effort enable (requires active GNOME session)
+if sudo -u "$REAL_USER" gnome-extensions list >/dev/null 2>&1; then
+  sudo -u "$REAL_USER" gnome-extensions enable "$EXT_UUID" || \
+    log "Extension installed but could not be enabled automatically (re-login required)."
+else
+  log "gnome-extensions command not available in this session."
+fi
+
+log "GNOME extension installed. Re-login required to fully activate."
+
 log ""
 log "Done. POS Kiosk will autostart via ${AUTOSTART_DESKTOP}."
 log "Next: edit the URL in: ${POS_CONF_FILE}."
