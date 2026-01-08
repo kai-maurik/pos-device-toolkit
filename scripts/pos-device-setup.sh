@@ -39,18 +39,20 @@ fi
 
 command -v firefox >/dev/null 2>&1 || die "firefox not found in PATH."
 
-# 2) Detect Snap vs Deb and choose command
+# 2) Choose command
 FIREFOX_BIN="$(command -v firefox)"
 FIREFOX_CMD="firefox"
 
 log "Using Firefox command: ${FIREFOX_CMD}"
 log "Firefox binary path: ${FIREFOX_BIN}"
 
-# 3) Ensure pos profile exists
-log "Ensuring POS Firefox profile exists..."
+# 3) Ensure pos profile exists and installing requirements
+log "Ensuring POS Firefox profile exists and installing X11 seperation dependencies..."
 
 sudo -u "$REAL_USER" env HOME="$REAL_HOME" bash -lc "${FIREFOX_CMD} --headless --CreateProfile \"${POS_PROFILE}\"" || die "Failed to create Firefox profile: ${POS_PROFILE}"
 # --CreateProfile is idempotent; Firefox will ignore if it already exists
+sudo apt-get update
+sudo apt-get install -y x11-xserver-utils
 
 # 4) Install POS URL config
 log "Installing POS URL config..."
@@ -79,6 +81,13 @@ set -e
 
 CONF_SYSTEM="${POS_CONF_FILE}"
 CONF_USER="\$HOME/.config/pos-device/pos-url.conf"
+
+# Make sure DISPLAY is set for Xwayland
+export DISPLAY="\${DISPLAY:-:0}"
+
+# Allow this user to connect to the X server (Wayland -> Xwayland)
+# Needed for Snap Firefox when forcing X11.
+xhost +SI:localuser:"\$USER" >/dev/null 2>&1 || true
 
 if [[ -r "\$CONF_USER" ]]; then
   source "\$CONF_USER"
@@ -166,14 +175,6 @@ if [[ ! -d "$EXT_DST" ]]; then
   log "GNOME extension copied to user directory."
 else
   log "GNOME extension already installed; skipping copy."
-fi
-
-# Best-effort enable (requires active GNOME session)
-if sudo -u "$REAL_USER" gnome-extensions list >/dev/null 2>&1; then
-  sudo -u "$REAL_USER" gnome-extensions enable "$EXT_UUID" || \
-    log "Extension installed but could not be enabled automatically (re-login required)."
-else
-  log "gnome-extensions command not available in this session."
 fi
 
 log "GNOME extension installed. Re-login required to fully activate."
