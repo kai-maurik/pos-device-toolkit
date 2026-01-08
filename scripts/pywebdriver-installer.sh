@@ -35,15 +35,14 @@ if [[ -n "${DEB_PATH}" ]]; then
   dpkg -i ${DEB_PATH} || apt -f install -y
 fi
 
-echo "[4/9] Clone pywebdriver into $PYW_DIR (or update if it already exists)"
+echo "[4/9] Install pywebdriver into $PYW_DIR"
 mkdir -p /opt/posbox
-if [[ ! -d "$PYW_DIR/.git" ]]; then
+
+if [[ -d "$PYW_DIR" ]]; then
+  echo "pywebdriver already exists at $PYW_DIR - skipping clone/update."
+else
   git clone "$PYW_REPO" "$PYW_DIR"
 fi
-cd "$PYW_DIR"
-git fetch --all --prune
-# Branch name contains ":" so we handle failures gracefully
-git checkout "$PYW_BRANCH" 2>/dev/null || true
 
 echo "[5/9] Create venv and install Python deps inside venv (no sudo pip)"
 python3 -m venv "$PYW_DIR/venv"
