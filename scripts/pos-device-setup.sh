@@ -82,22 +82,22 @@ sudo tee "${POS_WRAPPER}" >/dev/null <<EOF
 set -e
 
 CONF_SYSTEM="${POS_CONF_FILE}"
-CONF_USER="$HOME/.config/pos-device/pos-url.conf"
+CONF_USER="\$HOME/.config/pos-device/pos-url.conf"
 
-if [[ -r "$CONF_USER" ]]; then
-  source "$CONF_USER"
-elif [[ -r "$CONF_SYSTEM" ]]; then
-  source "$CONF_SYSTEM"
+if [[ -r "\$CONF_USER" ]]; then
+  source "\$CONF_USER"
+elif [[ -r "\$CONF_SYSTEM" ]]; then
+  source "\$CONF_SYSTEM"
 fi
 
-if [[ -z "${POS_URL:-}" ]]; then
+if [[ -z "\${POS_URL:-}" ]]; then
   echo "POS_URL not set. Edit pos-url.conf." >&2
   exec env MOZ_ENABLE_WAYLAND=0 \
     ${FIREFOX_CMD} --no-remote -P "${POS_PROFILE}" --kiosk --class="${POS_CLASS}" about:blank
 fi
 
 exec env MOZ_ENABLE_WAYLAND=0 \
-  ${FIREFOX_CMD} --no-remote -P "${POS_PROFILE}" --kiosk --class="${POS_CLASS}" "$POS_URL"
+  ${FIREFOX_CMD} --no-remote -P "${POS_PROFILE}" --kiosk --class="${POS_CLASS}" "\$POS_URL"
 EOF
 
 sudo chmod 755 "${POS_WRAPPER}"
