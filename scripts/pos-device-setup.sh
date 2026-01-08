@@ -106,7 +106,6 @@ exec env MOZ_ENABLE_WAYLAND=0 GDK_BACKEND=x11 \
   --no-remote \
   -P "${POS_PROFILE}" \
   --kiosk \
-  --private-window \
   --disable-infobars \
   --no-default-browser-check \
   --class="${POS_CLASS}" \
