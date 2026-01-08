@@ -46,13 +46,11 @@ fi
 
 echo "[5/9] Create venv and install Python deps inside venv (no sudo pip)"
 python3 -m venv "$PYW_DIR/venv"
-# Make sure service user can read everything
 chown -R pywebdriver:pywebdriver "$PYW_DIR"
 
-# Install deps as root but targeting venv's pip explicitly (still not "sudo pip" system-wide)
 "$PYW_DIR/venv/bin/pip" install -U pip setuptools wheel
 "$PYW_DIR/venv/bin/pip" install -r "$PYW_DIR/requirements.txt"
-"$PYW_DIR/venv/bin/pip" install .
+"$PYW_DIR/venv/bin/pip" install "$PYW_DIR"
 
 echo "[6/9] Ensure config exists at $CFG_LOC/config.ini"
 mkdir -p "$CFG_LOC"
