@@ -97,12 +97,20 @@ fi
 
 if [[ -z "\${POS_URL:-}" ]]; then
   echo "POS_URL not set. Edit pos-url.conf." >&2
-  exec env MOZ_ENABLE_WAYLAND=0 \
+  exec env MOZ_ENABLE_WAYLAND=0 GDK_BACKEND=x11 \
     ${FIREFOX_CMD} --no-remote -P "${POS_PROFILE}" --kiosk --class="${POS_CLASS}" about:blank
 fi
 
-exec env MOZ_ENABLE_WAYLAND=0 \
-  ${FIREFOX_CMD} --no-remote -P "${POS_PROFILE}" --kiosk --class="${POS_CLASS}" "\$POS_URL"
+exec env MOZ_ENABLE_WAYLAND=0 GDK_BACKEND=x11 \
+  ${FIREFOX_CMD} \
+  --no-remote \
+  -P "${POS_PROFILE}" \
+  --kiosk \
+  --private-window \
+  --disable-infobars \
+  --no-default-browser-check \
+  --class="${POS_CLASS}" \
+  "\$POS_URL"
 EOF
 
 sudo chmod 755 "${POS_WRAPPER}"

@@ -100,6 +100,7 @@ pos-device-toolkit/
 * Ubuntu system with GNOME
 * User account with `sudo` privileges
 * Internet connection
+* IMPORTANT: Official firefox .deb package (NO SNAP!)
 
 ### Install
 
@@ -135,12 +136,26 @@ Example:
 POS_URL="https://your-pos.example.com/web"
 ```
 
-### Re-login
+### Enable extension and re-login
 
-Log out and back in to ensure:
+Run this in the terminal to activate the gnome extension, moving the customer screen to the second display:
+```
+gnome-extensions enable pdt@kaivanmaurik.com
+```
+
+Then log out and back in to ensure:
 
 * autostart is activated
 * GNOME extension is fully loaded
+
+### Optional: harden KIOSK experience by disabeling firefox features
+
+Firefox has a lot of popups enabled by default. Many of them are disabled by the wrapper, but to ensure
+a fully hardened POS experience it's recommended to add more flags to the user profile.
+
+A help file has been provided in the root of this repo to provide this. To install simply:
+1. Move `user.js` to the firefox POS profile folder
+2. Restart firefox
 
 ---
 
@@ -191,16 +206,14 @@ rm ~/.config/autostart/firefox-pos.desktop
 
 ---
 
-## Design philosophy
+## A note on Firefox DEB package vs SNAP
 
-* POS systems should behave like **appliances**
-* Explicit configuration over hidden state
-* Clear separation between:
+Make sure you have the deb version installed. For convinience, the official install
+instructions have been provided in the home folder of this repo.
 
-  * system state (`/etc`, `/opt`)
-  * user state (`~/.local`, `~/.config`)
-* Safe defaults and predictable behavior
-* Minimal manual intervention after setup
+The deb package is necesairy to ensure proper task bar splitting. If you only use this
+for the kiosk mode, snap could be used in theory, but I would still recommend disabling
+it and installing the proper .deb package through the official documentation.
 
 ---
 
