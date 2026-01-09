@@ -1,21 +1,14 @@
 # POS Device Toolkit (PDT)
 
 **POS Device Toolkit**
-by **Kai van Maurik**
-HueCreate - [https://huecreate.nl](https://huecreate.nl)
-Personal - [https://kaivanmaurik.com](https://kaivanmaurik.com)
+by **Kai van Maurik**  
+HueCreate - [https://huecreate.nl](https://huecreate.nl)  
+Personal - [https://kaivanmaurik.com](https://kaivanmaurik.com)  
 
 POS Device Toolkit (PDT) is a practical, production-oriented toolkit for configuring and maintaining Linux-based Point-of-Sale (POS) devices.
-It is designed to turn a standard Ubuntu installation into a **stable, kiosk-style POS workstation** with minimal ongoing maintenance.
+It is designed to turn a standard Ubuntu installation into a stable, kiosk-style POS workstation with minimal ongoing maintenance.
 
-This toolkit is used in real-world organic retail environments and prioritizes:
-
-* reliability
-* re-runnability
-* explicit configuration
-* low operational overhead
-
----
+This toolkit is used in real-world organic retail environments, using a custom setup of Odoo (without IOT box)
 
 ## What this toolkit does
 
@@ -42,7 +35,6 @@ This toolkit is used in real-world organic retail environments and prioritizes:
   /etc/pos-device/pos-url.conf
   ```
 * Makes it easy to reuse the same system image for multiple shops or terminals
-* No hard-coded URLs in scripts or desktop files
 
 ### PyWebDriver system service
 
@@ -60,8 +52,6 @@ It also includes an install script for correctly setting up [PyWebdriver](https:
 
 The GNOME extension, compatable with an Odoo system, moves a CustomerFacingDisplay to the second monitor and full screens it if detected. It searches for the `CustomerFacingDisplay` window name on window open events.
 
----
-
 ## Supported environment
 
 Designed and tested for:
@@ -73,25 +63,6 @@ Designed and tested for:
 
 Other Ubuntu-based systems may work but are not officially supported.
 
----
-
-## Repository structure
-
-```
-pos-device-toolkit/
-├── install.sh
-├── scripts/
-│   ├── pos-device-setup.sh
-│   └── pywebdriver-installer.sh
-└── assets/
-    ├── icons/
-    │   └── pos-browser.png
-    └── gnome-extension/
-        └── pdt@kaivanmaurik.com
-```
-
----
-
 ## Installation
 
 ### Requirements
@@ -99,7 +70,12 @@ pos-device-toolkit/
 * Ubuntu system with GNOME
 * User account with `sudo` privileges
 * Internet connection
-* IMPORTANT: Official firefox .deb package (NO SNAP!)
+
+#### IMPORTANT: Install Firefox DEB verion (NOT SNAP).
+
+Ubuntu 22.04 has the snap package of Firefox istalled by default. If you haven't yet, remove the snap version of firefox and install the [official debian version](https://support.mozilla.org/en-US/kb/install-firefox-linux). For convinience, the official install instructions have been provided in the `/assets` folder. Clone this project before uninstalling firefox, so you can copy paste instructions from here. **Make sure you do this before installation**.
+
+> The deb package is necesairy to ensure proper task bar splitting for the KIOSK mode. If you use your POS only for kiosk mode (no other work in firefox), you could in theory keep the snap package, but I would still recommended to install the official version through mozilla.
 
 ### Install
 
@@ -118,8 +94,6 @@ During installation:
 * Autostart and GNOME extension are configured
 
 Note: both installer scripts in the `/scripts` folder can also be run seperately, to install parts of the program. For these scripts to run succesfully, make sure the `/assets` folder is included next to the `/scripts` folder where the scripts reside. Easiest way is to just clone the project and run the scripts individually.
-
----
 
 ## Post-installation steps
 
@@ -154,7 +128,7 @@ Then log out and back in to ensure:
 Firefox has a lot of popups enabled by default. Many of them are disabled by the wrapper, but to ensure
 a fully hardened POS experience it's recommended to add more flags to the user profile.
 
-A help file has been provided in the root of this repo to provide this. To install simply:
+A help file has been provided in `/assets` to provide this. To install simply:
 1. Move `user.js` to the firefox POS profile folder
 2. Restart firefox
 
@@ -207,26 +181,10 @@ rm ~/.config/autostart/firefox-pos.desktop
 
 ---
 
-## A note on Firefox DEB package vs SNAP
-
-Make sure you have the deb version installed. For convinience, the official install
-instructions have been provided in the home folder of this repo.
-
-The deb package is necesairy to ensure proper task bar splitting. If you only use this
-for the kiosk mode, snap could be used in theory, but I would still recommend disabling
-it and installing the proper .deb package through the official documentation.
-
----
-
 ## License
-
-This project is licensed under the **PDT Program Licence (Non-Commercial Use)**.
-
-### PDT Program Licence (Non-Commercial Use)
 
 Copyright © 2025
 **De Nieuwe Graanschuur**, Amersfoort, The Netherlands.
-All rights reserved.
 
 See `LICENSE.txt` for the full licence text.
 
@@ -234,7 +192,7 @@ See `LICENSE.txt` for the full licence text.
 
 ## Author
 
-**Kai van Maurik**
-HueCreate - [https://huecreate.nl](https://huecreate.nl)
-Personal - [https://kaivanmaurik.com](https://kaivanmaurik.com)
-GitHub - [https://github.com/kai-maurik](https://github.com/kai-maurik)
+**Kai van Maurik**<br>
+HueCreate - [https://huecreate.nl](https://huecreate.nl)<br>
+Personal - [https://kaivanmaurik.com](https://kaivanmaurik.com)<br>
+GitHub - [https://github.com/kai-maurik](https://github.com/kai-maurik)<br>
