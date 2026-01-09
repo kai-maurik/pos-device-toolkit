@@ -73,7 +73,7 @@ Other Ubuntu-based systems may work but are not officially supported.
 
 #### IMPORTANT: Install Firefox DEB verion (NOT SNAP).
 
-Ubuntu 22.04 has the snap package of Firefox istalled by default. If you haven't yet, remove the snap version of firefox and install the [official debian version](https://support.mozilla.org/en-US/kb/install-firefox-linux). For convinience, the official install instructions have been provided in the `/assets` folder. Clone this project before uninstalling firefox, so you can copy paste instructions from here. **Make sure you do this before installation**.
+Ubuntu 22.04 has the snap package of Firefox istalled by default. If you haven't yet, remove the snap version of firefox and install the [official debian version](https://support.mozilla.org/en-US/kb/install-firefox-linux). For convinience, the official install instructions have been provided in the `/assets` folder. Clone this project before uninstalling firefox, so you can copy paste instructions from here. **Do this before installing this Pos Device Toolkit.** Othewise profiles and settings will be created for the wrong firefox.
 
 > The deb package is necesairy to ensure proper task bar splitting for the KIOSK mode. If you use your POS only for kiosk mode (no other work in firefox), you could in theory keep the snap package, but I would still recommended to install the official version through mozilla.
 
