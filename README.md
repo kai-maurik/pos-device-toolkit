@@ -58,7 +58,7 @@ Designed and tested for:
 
 * Ubuntu 22.04
 * GNOME (Wayland)
-* Firefox Deb **(IMPORTANT, NOT SNAP. See section Firefox Setup)**
+* Firefox Deb **(IMPORTANT, REMOVE SNAP VERSION. See section Known Issues)**
 * Single-user POS terminals
 
 Other Ubuntu-based systems may work but are not officially supported.  
