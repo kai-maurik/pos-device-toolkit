@@ -58,10 +58,10 @@ Designed and tested for:
 
 * Ubuntu 22.04
 * GNOME (Wayland)
-* Firefox (Deb)
+* Firefox Deb **(IMPORTANT, NOT SNAP. See section Firefox Setup)**
 * Single-user POS terminals
 
-Other Ubuntu-based systems may work but are not officially supported.
+Other Ubuntu-based systems may work but are not officially supported.  
 
 ## Installation
 
@@ -70,12 +70,6 @@ Other Ubuntu-based systems may work but are not officially supported.
 * Ubuntu system with GNOME
 * User account with `sudo` privileges
 * Internet connection
-
-#### IMPORTANT: Install Firefox DEB verion (NOT SNAP).
-
-Ubuntu 22.04 has the snap package of Firefox istalled by default. If you haven't yet, remove the snap version of firefox and install the [official debian version](https://support.mozilla.org/en-US/kb/install-firefox-linux). For convinience, the official install instructions have been provided in the `/assets` folder. Clone this project before uninstalling firefox, so you can copy paste instructions from here. **Make sure you do this before installation**.
-
-> The deb package is necesairy to ensure proper task bar splitting for the KIOSK mode. If you use your POS only for kiosk mode (no other work in firefox), you could in theory keep the snap package, but I would still recommended to install the official version through mozilla.
 
 ### Install
 
@@ -140,6 +134,40 @@ A help file has been provided in `/assets` to provide this. To install simply:
 * Normal Firefox remains available for admin tasks
 * POS browser always runs in kiosk mode
 * Services automatically recover after crashes
+
+---
+
+## Known Issue: Firefox snap version
+
+**Make sure you do this before installation! If the kiosk browser is not starting (the POS Browser), it could be that the wrapper failed because of snap firefox being present instead of the deb version.**
+
+*It can be corrected after the fact by removing the snap version of firefox, but then you need to rerun the installation scripts so the necesairy firefox profile is created.*
+
+Ubuntu 22.04 has the snap package of Firefox istalled by default. If you haven't yet, remove the snap version of firefox and install the [official debian version](https://support.mozilla.org/en-US/kb/install-firefox-linux). For convinience, the official install instructions have been provided in the `/assets` folder. Clone this project before uninstalling firefox, so you can copy paste instructions from here. .
+
+> The deb package is necesairy to ensure proper task bar splitting for the KIOSK mode. If you use your POS only for kiosk mode (no other work in firefox), you could in theory keep the snap package, but I would still recommended to install the official version through mozilla.
+
+#### Locking down the snap version
+
+Ubuntu has agressive build in auto update for the snap version of firefox. Simply installing the DEB version is not enough. As soon as a reboot happens and Ubuntu doesn't find the snap, it auto installs, overwriting the mozilla version. Here are a few ways to lock down the system. 
+
+*Do this after installing firefox through the official instructions!*
+
+Make sure snap firefox is truly gone:
+```sudo snap remove firefox```
+Remove ubuntu's snap-triggering firefox package:
+`sudo apt remove -y firefox`
+And then lock it forever:
+`sudo apt-mark hold firefox`
+
+These should already prevent snap-firefox from installing. However, here are some extra ways to prevent snap-firefox from every interfearing.
+
+1. Remove snap binary from PATH
+`sudo rm -f /snap/bin/firefox`
+2. Force PATH preference
+`sudo ln -sf /usr/bin/firefox /usr/local/bin/firefox`
+
+##### 
 
 ---
 
