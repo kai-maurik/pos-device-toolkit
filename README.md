@@ -76,9 +76,10 @@ Other Ubuntu-based systems may work but are not officially supported.
 Open an empty folder, and run the following commands:
 ```bash
 wget https://raw.githubusercontent.com/kai-maurik/pos-device-toolkit/master/install.sh
-chmod +x install.sh
+chmod +x ./install.sh
 ./install.sh
 ```
+If you don't run with `sudo`, you'll be asked to enter the sudo password a few times.
 
 During installation:
 
