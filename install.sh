@@ -43,6 +43,9 @@ sudo -u "$REAL_USER" sudo -E "$TARGET_DIR/scripts/pos-device-setup.sh"
 log "Running pywebdriver-installer.sh..."
 sudo -u "$REAL_USER" sudo -E "$TARGET_DIR/scripts/pywebdriver-installer.sh"
 
+# Apply bandate fix for deprecated PyWebdriver package
+sudo -u "$REAL_USER" sudo /opt/posbox/pywebdriver/venv/bin/pip install "setuptools<81"
+
 log ""
 log "Install complete - POS Device Toolkit"
 log ""
